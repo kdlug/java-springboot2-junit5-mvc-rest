@@ -1,19 +1,36 @@
-[![CircleCI](https://circleci.com/gh/springframeworkguru/tsbb2b-sfg-brewery.svg?style=svg)](https://circleci.com/gh/springframeworkguru/tsbb2b-sfg-brewery)
+## Wiremock
 
-# Testing Spring Boot B2G - SFG Brewery
+Run
 
-All source code examples in the repository are for my [Online Course - Testing Spring Beginner to Guru](https://www.udemy.com/testing-spring-boot-beginner-to-guru/?couponCode=GITHUB_REPO)
+```
+java -jar wiremock-standalone-2.24.1.jar
+```
 
-This source code repository contains JUnit 5 and Spring Framework Testing examples.
 
-## Setup
-### Requirements
-* Should use Java 11 or higher. Previous versions of Java are un-tested.
-* Use Maven 3.6.0 or higher
+### Wiremock recorder
 
-## Support
-For questions and help:
-* Please post in course
-* Or post in the Slack Community exclusive to the course.
+Run wiremock on some port
 
-GitHub Issues will not be addressed.
+```
+java -jar wiremock-standalone-2.24.1.jar --port 8081
+```
+
+Open recorder in the browser
+
+```
+http://localhost:8081/__admin/recorder/
+```
+
+F.ex. you want to record the following endpoint:
+
+```
+https://swapi.co/api/people
+```
+
+Put target URL: `https://swapi.co` and click record button. In a separate window just call your api endpoint using the proxy:
+
+```
+http://localhost:8081/api/people
+```
+
+Stop recording, you should see: `Captured 1 stub mappings.`. Go to your `{wiremock-bin}/mappings` and open .json file.
